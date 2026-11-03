@@ -1,0 +1,10 @@
+.terms-page { min-height: 70svh; background: var(--color-paper); color: var(--color-ink); }
+.terms-page-inner { max-width: 1100px; padding: clamp(170px, 20vh, 240px) var(--gutter) 120px; }
+.terms-page h1 { margin: 0 0 40px; font-size: clamp(60px, 9vw, 130px); font-weight: 400; line-height: .92; letter-spacing: -.075em; }
+.terms-page p { margin: 0 0 55px; font-size: clamp(20px, 2vw, 28px); line-height: 1.35; }
+.terms-page a { display: inline-flex; gap: 18px; padding-bottom: 8px; border-bottom: 1px solid currentColor; font-family: 'Courier New', monospace; font-size: 12px; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
+.terms-page a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 5px; }
+
+@media (max-width: 600px) {
+  .terms-page-inner { padding-top: 160px; padding-bottom: 90px; }
+}

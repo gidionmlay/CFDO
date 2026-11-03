@@ -1,0 +1,55 @@
+.consultancy { background: var(--color-ink); color: var(--color-light); }
+.consultancy-inner { padding: 126px var(--gutter) 150px; }
+.consultancy-intro { display: flex; justify-content: space-between; align-items: end; gap: 30px; min-height: 350px; padding: 80px 0 112px; border-bottom: 1px solid rgba(248,246,240,.3); }
+.consultancy-transition { max-width: 1050px; margin: 0; color: #e9e5da; font-size: clamp(54px, 6.7vw, 110px); line-height: .94; letter-spacing: -.075em; }
+.consultancy-intro-mark { flex: none; color: var(--color-accent); font-size: clamp(70px, 10vw, 150px); font-weight: 300; line-height: .7; }
+.consultancy-main { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1fr); gap: clamp(60px, 8vw, 130px); padding-top: 125px; }
+.consultancy-heading-group { min-width: 0; }
+.consultancy-kicker { color: #dcb895; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; letter-spacing: .1em; text-transform: uppercase; }
+.consultancy-heading-group h2 { max-width: 720px; margin: 30px 0 0; font-size: clamp(55px, 5.8vw, 90px); font-weight: 400; line-height: .94; letter-spacing: -.07em; }
+.consultancy-services { border-top: 1px solid rgba(248,246,240,.3); }
+.consultancy-service { border-bottom: 1px solid rgba(248,246,240,.3); }
+.consultancy-service h3 { margin: 0; font-weight: 400; }
+.consultancy-service-trigger { display: grid; grid-template-columns: 36px minmax(0, 1fr) 32px; gap: 20px; align-items: start; width: 100%; padding: 25px 0 29px; border: 0; background: transparent; color: inherit; cursor: pointer; text-align: left; }
+.consultancy-service-trigger:hover .consultancy-service-title { color: #dcb895; }
+.consultancy-service-trigger:focus-visible, .consultancy-service-link:focus-visible { outline: 2px solid #dcb895; outline-offset: 5px; }
+.consultancy-service-number { padding-top: 8px; color: #dcb895; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: .1em; }
+.consultancy-service-labels { min-width: 0; }
+.consultancy-service-title { max-width: 580px; font-size: clamp(29px, 2.65vw, 43px); font-weight: 400; line-height: 1.05; letter-spacing: -.055em; transition: color var(--motion-normal); }
+.consultancy-service-icon { display: grid; place-items: center; width: 31px; height: 31px; border: 1px solid rgba(248,246,240,.5); border-radius: 50%; font-size: 22px; line-height: 1; }
+.consultancy-service-panel { position: relative; padding: 0 54px 38px 56px; }
+.consultancy-service-panel[hidden] { display: none; }
+.consultancy-service-panel p { max-width: 500px; margin: 0; color: #d6dfd7; font-size: clamp(18px, 1.5vw, 23px); line-height: 1.35; letter-spacing: -.02em; }
+.consultancy-service-link { display: inline-flex; align-items: center; gap: 22px; min-height: 44px; margin-top: 26px; padding: 9px 10px 9px 17px; border: 1px solid rgba(248,246,240,.55); border-radius: 999px; color: var(--color-light); font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; transition: background var(--motion-normal), color var(--motion-normal); }
+.consultancy-service-link span { display: grid; place-items: center; width: 25px; height: 25px; border-radius: 50%; background: var(--color-accent); font-family: Arial, Helvetica, sans-serif; font-size: 18px; line-height: 1; }
+.consultancy-service-link:hover { background: var(--color-light); color: var(--color-ink); }
+
+@media (max-width: 1000px) {
+  .consultancy-intro { min-height: 0; padding: 75px 0 100px; }
+  .consultancy-main { grid-template-columns: 1fr; gap: 75px; padding-top: 90px; }
+  .consultancy-heading-group h2 { max-width: 750px; font-size: clamp(60px, 8vw, 82px); }
+  .consultancy-service-title { font-size: clamp(34px, 4.5vw, 48px); }
+}
+
+@media (max-width: 600px) {
+  .consultancy-inner { padding-top: 98px; padding-bottom: 105px; }
+  .consultancy-intro { align-items: start; gap: 12px; padding: 64px 0 76px; }
+  .consultancy-transition { font-size: clamp(51px, 12.5vw, 76px); }
+  .consultancy-intro-mark { margin-top: 5px; font-size: 44px; }
+  .consultancy-main { gap: 62px; padding-top: 78px; }
+  .consultancy-heading-group h2 { margin-top: 22px; font-size: clamp(48px, 11.5vw, 70px); }
+  .consultancy-service-trigger { grid-template-columns: 29px minmax(0, 1fr) 28px; gap: 10px; padding: 24px 0 27px; }
+  .consultancy-service-number { padding-top: 5px; font-size: 10px; }
+  .consultancy-service-title { font-size: clamp(29px, 7.6vw, 42px); }
+  .consultancy-service-icon { width: 27px; height: 27px; font-size: 19px; }
+  .consultancy-service-panel { min-height: 0; padding: 0 30px 36px 39px; }
+  .consultancy-service-panel p { font-size: 18px; }
+}
+
+@media (max-width: 360px) {
+  .consultancy-intro-mark { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .consultancy-service-title, .consultancy-service-link { transition: none; }
+}

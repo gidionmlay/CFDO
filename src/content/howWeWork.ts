@@ -1,0 +1,228 @@
+import communityCircleImage from '../Assets/Images/Global Ecovillage Network Global Ecovillage Network.jpeg'
+import leadershipImage from '../Assets/Images/leadership.jpeg'
+
+export const howWeWorkContent = {
+  hero: {
+    kicker: 'Our Approach',
+    titleLines: ['How we', 'work.'],
+    headline: 'Turning community priorities into sustainable progress.',
+    mission: 'CFDO brings together community participation, practical development initiatives and professional expertise to address challenges, create opportunities and support sustainable development across Tanzania Mainland.',
+    primaryAction: { label: 'Explore Our Work', href: '/our-work' },
+    secondaryAction: { label: 'Work With CFDO', href: '/#get-involved' },
+    media: {
+      src: communityCircleImage,
+      alt: 'Community members gathered in a collaborative planning circle outdoors',
+      desktopFocalPoint: '50% 45%',
+      mobileFocalPoint: '50% 40%',
+    },
+  },
+  concept: {
+    kicker: 'Core Concept',
+    headline: 'Understanding. Action. Sustainable Progress.',
+    introduction: 'The How We Work page explains how CFDO approaches community development and professional service delivery. Beyond describing our mission and programme areas, our methodology helps visitors understand the thinking behind CFDO’s work, the role of communities and partners, and how different activities contribute to lasting value.',
+    questionsHeading: 'Five Essential Questions',
+    questions: [
+      { number: '01', text: 'How does CFDO understand community needs and opportunities?' },
+      { number: '02', text: 'How does CFDO turn identified needs into practical initiatives?' },
+      { number: '03', text: 'How are programmes and consultancy services delivered?' },
+      { number: '04', text: 'How do communities, clients and partners participate?' },
+      { number: '05', text: 'How does CFDO work toward sustainable outcomes?' },
+    ],
+  },
+  stages: {
+    kicker: 'The Four Stages',
+    heading: 'A Coherent Pathway to Change',
+    subheading: 'These four stages provide a memorable narrative for our collaborative methodology, adapting flexibly to both grassroot programmes and professional engagements.',
+    items: [
+      {
+        id: 'listen',
+        number: '01',
+        title: 'Listen',
+        tagline: 'Understand before acting.',
+        summary: 'Meaningful development begins with understanding the people, communities and organizations involved. CFDO’s work is concerned with community empowerment, socioeconomic development, youth opportunities, health education and environmental conservation.',
+        points: [
+          'Understanding community priorities',
+          'Identifying challenges and opportunities',
+          'Listening to local stakeholders',
+          'Establishing the context for an initiative',
+        ],
+        principle: 'Start with understanding, not assumptions.',
+      },
+      {
+        id: 'design',
+        number: '02',
+        title: 'Design',
+        tagline: 'Turn understanding into a practical response.',
+        summary: 'Once needs and opportunities have been identified, the next step is to determine an appropriate response. Depending on the activity, this involves defining objectives, planning activities, identifying expertise, organizing resources or preparing a project proposal.',
+        points: [
+          'Clear and actionable objectives',
+          'Relevant and context-specific solutions',
+          'Practical planning and budgeting',
+          'Alignment between needs and intended outcomes',
+        ],
+        principle: 'Design responses around the challenge being addressed.',
+      },
+      {
+        id: 'deliver',
+        number: '03',
+        title: 'Deliver',
+        tagline: 'Put plans into meaningful action.',
+        summary: 'CFDO’s work spans community-development programmes and professional consultancy services. Delivery therefore takes different forms depending on the people, objectives and requirements involved—from entrepreneurship support to project-management assistance.',
+        points: [
+          'Programme implementation on the ground',
+          'Professional service delivery for clients',
+          'Collaboration with relevant stakeholders',
+          'Practical activities aligned with defined objectives',
+        ],
+        principle: 'Translate plans into disciplined action.',
+      },
+      {
+        id: 'sustain',
+        number: '04',
+        title: 'Sustain',
+        tagline: 'Build toward lasting value.',
+        summary: 'Sustainable development requires attention to what happens beyond an individual activity or engagement. CFDO’s mission connects socioeconomic development with environmental conservation, emphasizing capability, learning and continued opportunity.',
+        points: [
+          'Strengthening knowledge and capability',
+          'Learning from activities and experience',
+          'Supporting continued self-reliance',
+          'Considering long-term social, economic and environmental value',
+        ],
+        principle: 'Work toward outcomes that can continue to create value.',
+      },
+    ],
+  },
+  applications: {
+    kicker: 'One Philosophy, Two Applications',
+    heading: 'Adapted Across Programmes & Consultancy',
+    lead: 'CFDO applies its overall philosophy differently across its two principal areas of work. Both streams share the core conviction that progress must be practical, participatory, and sustainable.',
+    community: {
+      tag: 'Participatory Stream',
+      title: 'A. Community Development',
+      tagline: 'Working with communities to create opportunity.',
+      description: 'CFDO’s community-development work focuses on economic education and innovation, community empowerment, youth leadership and entrepreneurship, preventive health education, and youth networking and environmental conservation. Communities are active participants in development, not simply passive recipients.',
+      pathwayTitle: 'The Programme Pathway',
+      pathway: [
+        'Understand community priorities',
+        'Identify opportunities & objectives',
+        'Plan relevant activities',
+        'Deliver initiatives on the ground',
+        'Learn from experience & sustain',
+      ],
+      action: { label: 'Explore Programmes', href: '/our-work' },
+    },
+    consultancy: {
+      tag: 'Advisory Stream',
+      title: 'B. Professional Consultancy',
+      tagline: 'Applying expertise to practical challenges.',
+      description: 'CFDO’s consultancy services support entrepreneurs, businesses, NGOs, CBOs, institutions and other organizations. Unlike a community programme, a consultancy engagement typically begins with a defined client requirement and an agreed scope of work.',
+      pathwayTitle: 'The Consultancy Pathway',
+      pathway: [
+        'Understand the client requirement',
+        'Define scope & proposed solution',
+        'Agree on engagement & deliverables',
+        'Provide the professional service',
+        'Review work & determine next steps',
+      ],
+      services: [
+        'Entrepreneurship Consultation',
+        'Business Advisory & Mentoring',
+        'Project Planning & Management',
+        'Information Technology Services',
+      ],
+      action: { label: 'Explore Consultancy', href: '/consultancy' },
+    },
+  },
+  reinvestment: {
+    kicker: 'The Dual-Impact Engine',
+    heading: 'Professional services with a wider purpose.',
+    description: 'One distinctive feature of CFDO is the connection between its consultancy services and its community-development mission. Income generated through commercial consultancy is reinvested into community programmes, creating a virtuous cycle for sustainable development.',
+    steps: [
+      {
+        number: '01',
+        title: 'Professional Expertise',
+        description: 'Specialized capacity in business advisory, project planning and information technology.',
+      },
+      {
+        number: '02',
+        title: 'Consultancy Services',
+        description: 'Delivering tailored, high-calibre advisory to businesses, NGOs and institutions.',
+      },
+      {
+        number: '03',
+        title: 'Income Generation',
+        description: 'Earning sustainable commercial revenue independently of donor funding.',
+      },
+      {
+        number: '04',
+        title: 'Reinvestment in Programmes',
+        description: 'Channeling net surplus directly into grassroot community initiatives.',
+      },
+      {
+        number: '05',
+        title: 'Sustainable Development',
+        description: 'Creating durable socioeconomic and environmental progress across Tanzania.',
+      },
+    ],
+  },
+  collaboration: {
+    kicker: 'Shared Responsibility',
+    heading: 'Development is a shared effort.',
+    statement: 'We believe sustainable development is strengthened when people, knowledge and resources come together around shared priorities.',
+    description: 'CFDO’s work involves communities, individuals, organizations and development partners. Collaboration contributes to identifying authentic needs, delivering activities, sharing knowledge and unlocking collective opportunity.',
+    image: {
+      src: leadershipImage,
+      alt: 'Community and youth leaders collaborating in Tanzania',
+    },
+    areas: [
+      { title: 'Community Participation', detail: 'Local residents actively co-designing and executing local development priorities.' },
+      { title: 'Technical Expertise', detail: 'Specialists contributing insights across enterprise, technology and health.' },
+      { title: 'Knowledge & Training', detail: 'Interactive workshops and mentorship enabling long-term self-sufficiency.' },
+      { title: 'Resources & Partnerships', detail: 'Alliances with institutions and donors to scale beneficial community impact.' },
+      { title: 'Consultancy Engagements', detail: 'Strategic client partnerships that simultaneously power our community mission.' },
+      { title: 'Volunteering & Membership', detail: 'Dedicated citizens and organizational members investing in grassroots change.' },
+    ],
+  },
+  principles: {
+    kicker: 'What Guides Our Work',
+    heading: 'Five Core Principles',
+    lead: 'These principles represent the foundation of CFDO’s approach to social-economic progress and professional engagement.',
+    items: [
+      {
+        number: '01',
+        title: 'Community Participation',
+        description: 'Recognize the fundamental importance of involving communities as primary decision-makers in their own development.',
+      },
+      {
+        number: '02',
+        title: 'Practical Solutions',
+        description: 'Connect identified needs with realistic, context-sensitive activities, expertise, and sustainable resources.',
+      },
+      {
+        number: '03',
+        title: 'Empowerment',
+        description: 'Emphasize transferable knowledge, institutional capability, youth entrepreneurship and lasting opportunity.',
+      },
+      {
+        number: '04',
+        title: 'Collaboration',
+        description: 'Recognize and mobilize the complementary strengths of communities, civic institutions and partners.',
+      },
+      {
+        number: '05',
+        title: 'Sustainability',
+        description: 'Connect socioeconomic development directly with environmental conservation and durable long-term value.',
+      },
+    ],
+  },
+  closing: {
+    location: 'Tanzania Mainland',
+    heading: 'A sustainable future takes collective effort.',
+    description: 'CFDO works toward sustainable community development through social-economic programmes, empowerment initiatives, environmental conservation and professional consultancy services. Whether you represent a community, run a business, manage a development project or are looking for a partner, there are different ways to engage with CFDO.',
+    actions: [
+      { label: 'Explore Our Work', href: '/our-work', primary: true },
+      { label: 'Discuss a Partnership', href: '/#get-involved', primary: false },
+      { label: 'Consultancy Services', href: '/consultancy', primary: false },
+    ],
+  },
+} as const

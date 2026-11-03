@@ -1,0 +1,714 @@
+/* ==========================================================================
+   CFDO Global Floating Enquiry Panel
+   Design System: Mint-Yellow Consultation Treatment
+   Component-scoped tokens & accessible interaction styling
+   ========================================================================== */
+
+:root {
+  --cfdo-panel-mint: #B2F0E8;
+  --cfdo-panel-mint-light: #E4FAF6;
+  --cfdo-panel-mint-deep: #8CE2D6;
+  --cfdo-panel-yellow: #FFD580;
+  --cfdo-panel-yellow-hover: #F7C660;
+  --cfdo-panel-ink: #1A1A3E;
+  --cfdo-panel-ink-muted: #3D485C;
+  --cfdo-panel-line: rgba(26, 26, 62, 0.16);
+  --cfdo-panel-error: #B91C1C;
+  --cfdo-panel-error-bg: #FEE2E2;
+}
+
+/* --------------------------------------------------------------------------
+   1. COLLAPSED FLOATING TRIGGER TAB
+   Fixed to right edge of viewport
+   -------------------------------------------------------------------------- */
+
+.cfdo-floating-tab {
+  position: fixed;
+  z-index: 38;
+  right: 0;
+  top: 55%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 10px 18px 11px;
+  background: var(--color-ink, #183a32);
+  color: #FFFFFF;
+  border: none;
+  border-left: 2px solid var(--cfdo-panel-yellow);
+  border-radius: 10px 0 0 10px;
+  box-shadow: -4px 6px 20px rgba(12, 38, 31, 0.28);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              background 200ms ease,
+              box-shadow 220ms ease;
+  outline: none;
+}
+
+.cfdo-floating-tab:hover {
+  transform: translateY(-50%) translateX(-4px);
+  background: #0f2b24;
+  box-shadow: -6px 8px 24px rgba(12, 38, 31, 0.38);
+}
+
+.cfdo-floating-tab:focus-visible {
+  outline: 3px solid var(--cfdo-panel-yellow);
+  outline-offset: 3px;
+}
+
+.cfdo-floating-tab:active {
+  transform: translateY(-50%) translateX(-2px);
+}
+
+.cfdo-floating-tab.is-active {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Icon inside tab */
+.cfdo-tab-icon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  color: var(--cfdo-panel-yellow);
+  transition: transform 200ms ease;
+}
+
+.cfdo-floating-tab:hover .cfdo-tab-icon {
+  transform: translateX(-2px);
+}
+
+.cfdo-tab-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 2.2;
+}
+
+/* Vertical Text */
+.cfdo-tab-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-family: var(--font-heading);
+  font-size: var(--text-kicker);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-kicker);
+  text-transform: uppercase;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+/* Pulse badge dot */
+.cfdo-tab-badge {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cfdo-panel-yellow);
+  box-shadow: 0 0 0 0 rgba(255, 213, 128, 0.6);
+  animation: cfdo-pulse 2.4s infinite;
+}
+
+@keyframes cfdo-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 213, 128, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(255, 213, 128, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 213, 128, 0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. BACKDROP OVERLAY
+   -------------------------------------------------------------------------- */
+
+.cfdo-enquiry-backdrop {
+  position: fixed;
+  z-index: 45;
+  inset: 0;
+  background: rgba(12, 38, 31, 0.52);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  animation: cfdo-fade-in 260ms ease-out forwards;
+}
+
+@keyframes cfdo-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   3. EXPANDED SLIDE-IN PANEL
+   Mint surface + Warm Yellow accents
+   -------------------------------------------------------------------------- */
+
+.cfdo-enquiry-panel {
+  position: fixed;
+  z-index: 46;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(480px, 100vw);
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(176deg, var(--cfdo-panel-mint) 0%, #C3F5EE 65%, #D4F9F4 100%);
+  color: var(--cfdo-panel-ink);
+  box-shadow: -14px 0 45px rgba(12, 38, 31, 0.22);
+  transform: translateX(102%);
+  visibility: hidden;
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0s linear 300ms;
+  overflow: hidden;
+}
+
+.cfdo-enquiry-panel.is-open {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Decorative warm yellow strip across panel top */
+.cfdo-panel-accent-strip {
+  flex: none;
+  height: 6px;
+  background: linear-gradient(90deg, var(--cfdo-panel-yellow) 0%, #FFE5A3 100%);
+}
+
+.cfdo-panel-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px clamp(20px, 4vw, 36px) 32px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Panel Header */
+.cfdo-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.cfdo-panel-eyebrow-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cfdo-panel-eyebrow {
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(26, 26, 62, 0.08);
+  border: 1px solid rgba(26, 26, 62, 0.12);
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  font-size: var(--text-kicker);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-kicker);
+  letter-spacing: var(--tracking-kicker);
+  text-transform: uppercase;
+  color: var(--cfdo-panel-ink);
+}
+
+.cfdo-panel-close {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(26, 26, 62, 0.2);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--cfdo-panel-ink);
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: 26px;
+  line-height: 1;
+  transition: background 180ms ease,
+              transform 180ms ease,
+              border-color 180ms ease;
+}
+
+.cfdo-panel-close:hover {
+  background: #FFFFFF;
+  border-color: var(--cfdo-panel-ink);
+  transform: rotate(90deg);
+}
+
+.cfdo-panel-close:focus-visible {
+  outline: 2px solid var(--cfdo-panel-ink);
+  outline-offset: 2px;
+}
+
+/* Title Area */
+.cfdo-panel-title-area {
+  margin-bottom: 24px;
+}
+
+.cfdo-panel-heading {
+  margin: 0 0 10px 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-h2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-h2);
+  letter-spacing: var(--tracking-h2);
+  color: var(--cfdo-panel-ink);
+}
+
+.cfdo-panel-desc {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--cfdo-panel-ink-muted);
+}
+
+/* Panel Body */
+.cfdo-panel-body {
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   4. FORM CONTROLS & FIELDS
+   -------------------------------------------------------------------------- */
+
+.cfdo-enquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cfdo-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cfdo-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.01em;
+  color: var(--cfdo-panel-ink);
+}
+
+.cfdo-req {
+  color: #B91C1C;
+  margin-left: 2px;
+}
+
+.cfdo-opt {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-regular);
+  font-size: 12px;
+  color: var(--cfdo-panel-ink-muted);
+  margin-left: 4px;
+}
+
+/* Inputs & Textarea */
+.cfdo-form-group input,
+.cfdo-form-group textarea,
+.cfdo-select-wrapper select {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--cfdo-panel-ink);
+  background: #FFFFFF;
+  border: 1px solid var(--cfdo-panel-line);
+  border-radius: 6px;
+  padding: 11px 14px;
+  box-shadow: 0 1px 3px rgba(26, 26, 62, 0.05);
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.cfdo-form-group input::placeholder,
+.cfdo-form-group textarea::placeholder {
+  color: rgba(26, 26, 62, 0.42);
+}
+
+.cfdo-form-group input:hover,
+.cfdo-form-group textarea:hover,
+.cfdo-select-wrapper select:hover {
+  border-color: rgba(26, 26, 62, 0.35);
+}
+
+.cfdo-form-group input:focus,
+.cfdo-form-group textarea:focus,
+.cfdo-select-wrapper select:focus {
+  outline: none;
+  border-color: var(--cfdo-panel-ink);
+  box-shadow: 0 0 0 3px rgba(26, 26, 62, 0.14);
+}
+
+.cfdo-form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.45;
+}
+
+/* Custom Select with Caret */
+.cfdo-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.cfdo-select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 38px;
+  cursor: pointer;
+}
+
+.cfdo-select-wrapper::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9px;
+  height: 6px;
+  background-color: var(--cfdo-panel-ink);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  pointer-events: none;
+}
+
+/* Segmented Group for Enquiry Type */
+.cfdo-segmented-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 4px;
+  background: rgba(26, 26, 62, 0.07);
+  border: 1px solid rgba(26, 26, 62, 0.12);
+  border-radius: 8px;
+}
+
+.cfdo-segment-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 6px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--cfdo-panel-ink-muted);
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 160ms ease;
+}
+
+.cfdo-segment-btn:hover {
+  color: var(--cfdo-panel-ink);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.cfdo-segment-btn.is-selected {
+  background: #FFFFFF;
+  color: var(--cfdo-panel-ink);
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(26, 26, 62, 0.12);
+}
+
+.cfdo-segment-btn:focus-visible {
+  outline: 2px solid var(--cfdo-panel-ink);
+  outline-offset: 1px;
+}
+
+/* Error States */
+.cfdo-form-group.has-error input,
+.cfdo-form-group.has-error select,
+.cfdo-form-group.has-error textarea {
+  border-color: var(--cfdo-panel-error);
+  background: #FFFBFB;
+}
+
+.cfdo-form-group.has-error input:focus,
+.cfdo-form-group.has-error select:focus,
+.cfdo-form-group.has-error textarea:focus {
+  box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.18);
+}
+
+.cfdo-error-msg {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cfdo-panel-error);
+  margin-top: 2px;
+}
+
+.cfdo-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--cfdo-panel-error-bg);
+  border: 1px solid var(--cfdo-panel-error);
+  border-radius: 6px;
+  color: var(--cfdo-panel-error);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   5. CTA BUTTONS & ACTIONS
+   -------------------------------------------------------------------------- */
+
+.cfdo-form-actions {
+  margin-top: 10px;
+}
+
+/* Prominent Primary CTA (Warm Yellow Accent) */
+.cfdo-btn-primary {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 22px;
+  background: var(--cfdo-panel-yellow);
+  color: var(--cfdo-panel-ink);
+  font-family: var(--font-heading);
+  font-size: var(--text-cta);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-cta);
+  line-height: var(--leading-cta);
+  text-transform: uppercase;
+  border: 1px solid rgba(26, 26, 62, 0.15);
+  border-radius: 7px;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(26, 26, 62, 0.1);
+  transition: background 180ms ease,
+              transform 180ms ease,
+              box-shadow 180ms ease;
+}
+
+.cfdo-btn-primary:hover:not(:disabled) {
+  background: var(--cfdo-panel-yellow-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(26, 26, 62, 0.16);
+}
+
+.cfdo-btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.cfdo-btn-primary:focus-visible {
+  outline: 3px solid var(--cfdo-panel-ink);
+  outline-offset: 2px;
+}
+
+.cfdo-btn-primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.cfdo-btn-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cfdo-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(26, 26, 62, 0.25);
+  border-top-color: var(--cfdo-panel-ink);
+  border-radius: 50%;
+  animation: cfdo-spin 0.7s linear infinite;
+}
+
+@keyframes cfdo-spin {
+  to { transform: rotate(360deg); }
+}
+
+.cfdo-btn-secondary {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  background: transparent;
+  color: var(--cfdo-panel-ink);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  border: 1px solid rgba(26, 26, 62, 0.22);
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 180ms ease;
+}
+
+.cfdo-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: var(--cfdo-panel-ink);
+}
+
+.cfdo-panel-footer-note {
+  margin: 12px 0 0 0;
+  font-size: 11.5px;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--cfdo-panel-ink-muted);
+}
+
+/* --------------------------------------------------------------------------
+   6. SUCCESS CONFIRMATION STATE
+   -------------------------------------------------------------------------- */
+
+.cfdo-enquiry-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px 10px;
+  animation: cfdo-fade-in 300ms ease;
+}
+
+.cfdo-success-badge {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--cfdo-panel-yellow);
+  color: var(--cfdo-panel-ink);
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(255, 213, 128, 0.5);
+}
+
+.cfdo-success-heading {
+  margin: 0 0 10px 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-h3);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-h3);
+  letter-spacing: var(--tracking-h3);
+  color: var(--cfdo-panel-ink);
+}
+
+.cfdo-success-msg {
+  margin: 0 0 24px 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--cfdo-panel-ink-muted);
+  max-width: 360px;
+}
+
+.cfdo-success-recap {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(26, 26, 62, 0.12);
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-bottom: 28px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cfdo-recap-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--text-kicker);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-kicker);
+  line-height: var(--leading-kicker);
+  color: var(--cfdo-panel-ink-muted);
+  margin-bottom: 2px;
+}
+
+.cfdo-recap-value {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  color: var(--cfdo-panel-ink);
+}
+
+.cfdo-success-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   7. RESPONSIVE DESIGN (DESKTOP, TABLET, MOBILE)
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .cfdo-floating-tab {
+    top: auto;
+    bottom: 24px;
+    right: 16px;
+    transform: none;
+    flex-direction: row;
+    padding: 12px 18px;
+    border-radius: 30px;
+    border-left: none;
+    border: 2px solid var(--cfdo-panel-yellow);
+    box-shadow: 0 8px 24px rgba(12, 38, 31, 0.35);
+  }
+
+  .cfdo-floating-tab:hover {
+    transform: translateY(-2px);
+  }
+
+  .cfdo-floating-tab:active {
+    transform: translateY(0);
+  }
+
+  .cfdo-tab-text {
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    transform: none;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+
+  .cfdo-floating-tab.is-active {
+    display: none;
+  }
+
+  .cfdo-enquiry-panel {
+    width: 100vw;
+  }
+
+  .cfdo-segmented-group {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reduced Motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .cfdo-floating-tab,
+  .cfdo-enquiry-panel,
+  .cfdo-enquiry-backdrop,
+  .cfdo-btn-primary,
+  .cfdo-tab-badge {
+    animation: none !important;
+    transition: none !important;
+  }
+}
