@@ -1,5 +1,5 @@
-import communityCircleImage from '../Assets/Images/Global Ecovillage Network Global Ecovillage Network.jpeg'
-import leadershipImage from '../Assets/Images/leadership.jpeg'
+import communityCircleImage from '../Assets/Images/Foundation-Img/FRK04122.jpg'
+import leadershipImage from '../Assets/Images/Foundation-Img/FRK04442.jpg'
 
 export const howWeWorkContent = {
   hero: {
@@ -11,7 +11,7 @@ export const howWeWorkContent = {
     secondaryAction: { label: 'Work With CFDO', href: '/#get-involved' },
     media: {
       src: communityCircleImage,
-      alt: 'Community members gathered in a collaborative planning circle outdoors',
+      alt: 'VICOBA community members in participatory discussion circle in Arusha',
       desktopFocalPoint: '50% 45%',
       mobileFocalPoint: '50% 40%',
     },
@@ -172,7 +172,7 @@ export const howWeWorkContent = {
     description: 'CFDO’s work involves communities, individuals, organizations and development partners. Collaboration contributes to identifying authentic needs, delivering activities, sharing knowledge and unlocking collective opportunity.',
     image: {
       src: leadershipImage,
-      alt: 'Community and youth leaders collaborating in Tanzania',
+      alt: 'CFDO and partner field coordinators collaborating on program delivery and technical standards',
     },
     areas: [
       { title: 'Community Participation', detail: 'Local residents actively co-designing and executing local development priorities.' },

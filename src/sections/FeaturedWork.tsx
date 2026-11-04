@@ -9,11 +9,6 @@ export function FeaturedWork() {
   return (
     <section id="featured-work" className="featured-work" aria-labelledby="featured-work-title">
       <div className="featured-work-inner">
-        <div className="featured-work-topline">
-          <span>06 / Featured work</span>
-          <span>{String(projects.length).padStart(2, '0')} selected {projects.length === 1 ? 'project' : 'projects'}</span>
-        </div>
-
         <div className="featured-work-heading-row">
           <h2 id="featured-work-title">{featuredWorkContent.heading}</h2>
           <span className="featured-work-heading-mark" aria-hidden="true">{String(projects.length).padStart(2, '0')}</span>

@@ -7,6 +7,7 @@ import { Method } from '../sections/Method'
 import { Consultancy } from '../sections/Consultancy'
 import { CommunityStories } from '../sections/CommunityStories'
 import { FeaturedWork } from '../sections/FeaturedWork'
+import { ImpactGallery } from '../sections/ImpactGallery'
 import { Voices } from '../sections/Voices'
 import { News } from '../sections/News'
 import { GetInvolved } from '../sections/GetInvolved'
@@ -162,6 +163,7 @@ export function App() {
               <Consultancy />
               <CommunityStories />
               <FeaturedWork />
+              <ImpactGallery />
               <Voices />
               <News />
               <GetInvolved />

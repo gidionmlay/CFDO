@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { heroContent } from '../content/hero'
 import './Hero.css'
@@ -6,7 +6,21 @@ import './Hero.css'
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
   const mediaRef = useRef<HTMLDivElement>(null)
+  const [activeSlide, setActiveSlide] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
 
+  const slides = heroContent.slides || [
+    {
+      src: heroContent.media.src,
+      alt: heroContent.media.alt,
+      desktopFocalPoint: heroContent.media.desktopFocalPoint,
+      mobileFocalPoint: heroContent.media.mobileFocalPoint,
+      label: 'Community Development Initiative',
+      theme: 'Tanzania Mainland',
+    },
+  ]
+
+  // Parallax motion
   useEffect(() => {
     const section = sectionRef.current
     const media = mediaRef.current
@@ -46,33 +60,54 @@ export function Hero() {
     }
   }, [])
 
+  // Auto-advance carousel
+  useEffect(() => {
+    if (slides.length <= 1 || isPaused) return
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reducedMotion) return
+
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % slides.length)
+    }, 7000)
+
+    return () => clearInterval(timer)
+  }, [slides.length, isPaused])
+
   return (
-    <section ref={sectionRef} className="hero" aria-labelledby="hero-title">
-      <div
-        ref={mediaRef}
-        className="hero-media"
-        aria-hidden={heroContent.media.src ? undefined : true}
-        style={{
-          '--hero-desktop-focal': heroContent.media.desktopFocalPoint,
-          '--hero-mobile-focal': heroContent.media.mobileFocalPoint,
-        } as CSSProperties}
-      >
-        {heroContent.media.src && (
-          <img
-            src={heroContent.media.src}
-            alt={heroContent.media.alt}
-            fetchPriority="high"
-            decoding="async"
-          />
-        )}
-        {!heroContent.media.src && (
-          <div className="hero-media-placeholder">
-            <span className="hero-landform hero-landform-back" />
-            <span className="hero-landform hero-landform-front" />
-            <span className="hero-light" />
-          </div>
-        )}
+    <section
+      ref={sectionRef}
+      className="hero"
+      aria-labelledby="hero-title"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={() => setIsPaused(false)}
+    >
+      <div ref={mediaRef} className="hero-media">
+        {slides.map((slide, index) => {
+          const isActive = index === activeSlide
+          return (
+            <div
+              key={slide.src}
+              className={`hero-slide-layer ${isActive ? 'is-active' : ''}`}
+              aria-hidden={!isActive}
+              style={{
+                '--hero-desktop-focal': slide.desktopFocalPoint,
+                '--hero-mobile-focal': slide.mobileFocalPoint,
+              } as CSSProperties}
+            >
+              <img
+                src={slide.src}
+                alt={slide.alt}
+                fetchPriority={index === 0 ? 'high' : 'low'}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+            </div>
+          )
+        })}
       </div>
+
       <div className="hero-shade" aria-hidden="true" />
 
       <div className="hero-inner">
@@ -83,12 +118,12 @@ export function Hero() {
           <div className="hero-aside">
             <p className="hero-mission">{heroContent.mission}</p>
             <div className="hero-actions">
-              <a className="hero-action hero-action-primary" href="/our-work">Explore our work <span aria-hidden="true">↗</span></a>
-              <a className="hero-action hero-action-secondary" href="#get-involved">Partner with us <span aria-hidden="true">↗</span></a>
+              <a className="hero-action hero-action-primary" href="/our-work">
+                Explore our work <span aria-hidden="true">↗</span>
+              </a>
             </div>
           </div>
         </div>
-
       </div>
     </section>
   )

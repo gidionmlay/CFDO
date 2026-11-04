@@ -1,8 +1,29 @@
 .our-work-page { background: var(--color-paper); color: var(--color-ink); }
 
 .our-work-hero { position: relative; min-height: 90svh; overflow: hidden; isolation: isolate; background: #214437; color: var(--color-light); }
-.our-work-hero-art { position: absolute; z-index: -1; width: min(85vw, 1150px); aspect-ratio: 1; top: -34%; right: -21%; border: 1px solid rgba(236,229,205,.35); border-radius: 50%; box-shadow: 0 0 0 92px rgba(236,229,205,.045), 0 0 0 184px rgba(236,229,205,.04), 0 0 0 276px rgba(236,229,205,.035); background: radial-gradient(circle at 37% 37%, rgba(193,174,129,.27), transparent 41%), linear-gradient(135deg, rgba(133,157,119,.48), rgba(20,62,47,.1) 64%); }
-.our-work-hero-inner { display: flex; flex-direction: column; justify-content: space-between; gap: 90px; min-height: 90svh; padding: clamp(145px, 19vh, 220px) var(--gutter) clamp(55px, 8vh, 95px); }
+.our-work-hero-media,
+.our-work-hero-shade { position: absolute; inset: 0; }
+.our-work-hero-media {
+  z-index: -2;
+  inset: -10% 0;
+  overflow: hidden;
+  transform: translate3d(0, var(--our-work-hero-parallax-y, 0px), 0);
+}
+.our-work-hero-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--our-work-hero-desktop-focal, 50% 45%);
+}
+.our-work-hero-shade {
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(8, 35, 29, 0.78) 0%, rgba(8, 35, 29, 0.52) 55%, rgba(8, 35, 29, 0.40) 100%),
+    linear-gradient(0deg, rgba(8, 35, 29, 0.88) 0%, rgba(8, 35, 29, 0.25) 50%, rgba(8, 35, 29, 0.55) 100%);
+}
+.our-work-hero-art { position: absolute; z-index: -1; width: min(85vw, 1150px); aspect-ratio: 1; top: -34%; right: -21%; border: 1px solid rgba(236,229,205,.18); border-radius: 50%; box-shadow: 0 0 0 92px rgba(236,229,205,.02), 0 0 0 184px rgba(236,229,205,.02); opacity: 0.6; pointer-events: none; }
+.our-work-hero-inner { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: space-between; gap: 90px; min-height: 90svh; padding: clamp(145px, 19vh, 220px) var(--gutter) clamp(55px, 8vh, 95px); }
 .our-work-hero h1 { margin: 0; font-size: clamp(100px, 16vw, 250px); font-weight: 400; line-height: .79; letter-spacing: -.085em; text-transform: uppercase; }
 .our-work-hero h1 span { display: block; }
 .our-work-hero h1 span:last-child { margin-left: clamp(25px, 6vw, 95px); color: #e1c3a7; }
@@ -67,6 +88,7 @@
 
 @media (max-width: 600px) {
   .our-work-hero { min-height: 100svh; }
+  .our-work-hero-media img { object-position: var(--our-work-hero-mobile-focal, 50% 40%); }
   .our-work-hero-art { width: 135vw; top: 10%; right: -65%; }
   .our-work-hero-inner { min-height: 100svh; gap: 55px; padding-top: 140px; padding-bottom: 55px; }
   .our-work-hero h1 { font-size: clamp(75px, 21vw, 125px); }
@@ -89,5 +111,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .our-work-hero-media { inset: 0; transform: none; }
   .our-work-index-nav a, .our-work-index-arrow { transition: none; }
 }

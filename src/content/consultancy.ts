@@ -1,7 +1,8 @@
-import educationImage from '../Assets/Images/Education.jpeg'
-import leadershipImage from '../Assets/Images/leadership.jpeg'
-import empowermentImage from '../Assets/Images/empowerment.jpeg'
-import environmentalImage from '../Assets/Images/environmental.jpeg'
+import consultancyHeroImg from '../Assets/Images/Foundation-Img/FRK04536.jpg'
+import audiencesAdvisoryImg from '../Assets/Images/Foundation-Img/FRK04442.jpg'
+import entrepreneurshipImg from '../Assets/Images/Foundation-Img/FRK04584.jpg'
+import projectManagementImg from '../Assets/Images/Foundation-Img/FRK04946.jpg'
+import purposeCamartecImg from '../Assets/Images/Foundation-Img/FRK04963 (2).jpg'
 
 export const consultancyContent = {
   transition: "Our work doesn't stop at community programmes.",
@@ -14,8 +15,8 @@ export const consultancyContent = {
     primaryAction: { label: 'Request a Consultation', href: '#enquiry' },
     secondaryAction: { label: 'Explore Our Services', href: '#services' },
     media: {
-      src: educationImage,
-      alt: 'Professional advisory and strategic training session in Tanzania',
+      src: consultancyHeroImg,
+      alt: 'CFDO advisors and youth enterprise team in strategy session at Anza Hub in Arusha',
       desktopFocalPoint: '50% 35%',
       mobileFocalPoint: '50% 30%',
     },
@@ -26,10 +27,10 @@ export const consultancyContent = {
     supporting: 'Every business and organization faces different priorities. CFDO’s consultancy services are intended for people and institutions seeking relevant advice, structured planning and professional support.',
     quote: 'Sustainable enterprise is not built in isolation—it requires sound structure, clear operational discipline, and grounded local knowledge.',
     image: {
-      src: empowermentImage,
-      alt: 'Local enterprise owners and community stakeholders in discussion',
+      src: audiencesAdvisoryImg,
+      alt: 'Enterprise advisors and field program coordinators in consultation',
       caption: 'Plate 01 — Field Consultation & Stakeholder Advisory',
-      location: 'Dar es Salaam & Regional Districts',
+      location: 'Arusha & Regional Districts',
     },
     groups: [
       {
@@ -77,9 +78,9 @@ export const consultancyContent = {
       idealFor: 'Aspiring founders, early-stage innovators and cooperative leaders.',
       cta: 'Consult on Entrepreneurship',
       image: {
-        src: leadershipImage,
-        alt: 'Early-stage founders working through enterprise structuring with CFDO advisors',
-        caption: 'Plate 02 — Enterprise Structuring Session',
+        src: entrepreneurshipImg,
+        alt: 'Early-stage digital entrepreneur working through enterprise structuring and technology tools',
+        caption: 'Plate 02 — Enterprise Structuring & Incubation',
       },
     },
     {
@@ -112,9 +113,9 @@ export const consultancyContent = {
       idealFor: 'NGOs, community-based groups, educational institutions and project teams.',
       cta: 'Plan a Project Engagement',
       image: {
-        src: environmentalImage,
-        alt: 'Project planning, coordination and field operations review',
-        caption: 'Plate 03 — Project Execution & Field Logistics',
+        src: projectManagementImg,
+        alt: 'Industrial project coordination and safety compliance review at technical training facility',
+        caption: 'Plate 03 — Technical Operations & Field Project Management',
       },
     },
     {
@@ -166,9 +167,9 @@ export const consultancyContent = {
     pullquote: '“We do not treat professional services and social development as separate worlds. Every commercial engagement strengthens our capacity to empower Tanzanian communities.”',
     supporting: 'CFDO’s consultancy work is connected to its wider commitment to sustainable community development. Income generated through consultancy services is intended to be reinvested into community programmes, helping connect professional activity with the organization’s social and environmental mission.',
     image: {
-      src: leadershipImage,
-      alt: 'CFDO leadership and community advisory session in Tanzania',
-      caption: 'Plate 04 — Leadership & Reinvestment in Action',
+      src: purposeCamartecImg,
+      alt: 'CFDO leadership and institutional partners on the steps of CAMARTEC headquarters',
+      caption: 'Plate 04 — Institutional Alliances & Reinvestment',
       note: 'Self-Sustaining Development Model',
     },
     flowSteps: [

@@ -5,7 +5,8 @@ const futureAreas = [
   { number: '02', title: 'Our work', href: '/our-work' },
   { number: '03', title: 'How we work', href: '/how-we-work' },
   { number: '04', title: 'Consultancy', href: '/consultancy' },
-  { number: '05', title: 'Get involved', href: '#get-involved' },
+  { number: '05', title: 'Impact Gallery', href: '/#gallery' },
+  { number: '06', title: 'Get involved', href: '#get-involved' },
 ]
 
 function PathwayMark() {

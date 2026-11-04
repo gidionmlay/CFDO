@@ -6,6 +6,7 @@ const footerLinks = [
   { label: 'Our programmes', href: '/our-work' },
   { label: 'How we work', href: '/how-we-work' },
   { label: 'Consultancy', href: '/consultancy' },
+  { label: 'Impact Gallery', href: '#gallery' },
   { label: 'Community in Action', href: '#community-stories' },
   { label: 'Get involved', href: '#get-involved' },
 ]

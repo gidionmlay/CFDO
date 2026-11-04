@@ -1,11 +1,15 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import type { CSSProperties } from 'react'
 import { ourWorkContent } from '../content/ourWork'
 import { programmeContent } from '../content/programmes'
 import { FeaturedWork } from './FeaturedWork'
+import { ImpactGallery } from './ImpactGallery'
 import './OurWorkPage.css'
 
 export function OurWorkPage() {
+  const heroRef = useRef<HTMLElement>(null)
+  const heroMediaRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     const previousTitle = document.title
     document.title = 'Our Work | CFDO'
@@ -16,10 +20,65 @@ export function OurWorkPage() {
     return () => { document.title = previousTitle }
   }, [])
 
+  useEffect(() => {
+    const hero = heroRef.current
+    const heroMedia = heroMediaRef.current
+    if (!hero || !heroMedia) return
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let frame = 0
+
+    function update() {
+      frame = 0
+      if (!hero || !heroMedia) return
+      if (reducedMotion.matches) {
+        heroMedia.style.removeProperty('--our-work-hero-parallax-y')
+        return
+      }
+
+      const bounds = hero.getBoundingClientRect()
+      const progress = Math.min(1, Math.max(0, -bounds.top / bounds.height))
+      const distance = Math.min(90, bounds.height * 0.09) * (window.innerWidth <= 600 ? 0.6 : 1)
+      heroMedia.style.setProperty('--our-work-hero-parallax-y', `${(-progress * distance).toFixed(2)}px`)
+    }
+
+    function scheduleUpdate() {
+      if (!frame) frame = window.requestAnimationFrame(update)
+    }
+
+    scheduleUpdate()
+    window.addEventListener('scroll', scheduleUpdate, { passive: true })
+    window.addEventListener('resize', scheduleUpdate)
+    reducedMotion.addEventListener('change', scheduleUpdate)
+
+    return () => {
+      window.cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', scheduleUpdate)
+      window.removeEventListener('resize', scheduleUpdate)
+      reducedMotion.removeEventListener('change', scheduleUpdate)
+    }
+  }, [])
+
   return (
     <article className="our-work-page">
-      <header className="our-work-hero" aria-labelledby="our-work-title">
-        <div className="our-work-hero-art" aria-hidden="true" />
+      <header ref={heroRef} className="our-work-hero" aria-labelledby="our-work-title">
+        <div
+          ref={heroMediaRef}
+          className="our-work-hero-media"
+          style={{
+            '--our-work-hero-desktop-focal': ourWorkContent.heroMedia.desktopFocalPoint,
+            '--our-work-hero-mobile-focal': ourWorkContent.heroMedia.mobileFocalPoint,
+          } as CSSProperties}
+        >
+          <img
+            src={ourWorkContent.heroMedia.src}
+            alt={ourWorkContent.heroMedia.alt}
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+        <div className="our-work-hero-shade" aria-hidden="true" />
         <div className="our-work-hero-inner">
           <h1 id="our-work-title"><span>Our </span><span>work.</span></h1>
           <div className="our-work-hero-bottom">
@@ -81,6 +140,7 @@ export function OurWorkPage() {
       </div>
 
       <FeaturedWork />
+      <ImpactGallery />
 
       <section className="our-work-closing" aria-labelledby="our-work-closing-title">
         <h2 id="our-work-closing-title">{ourWorkContent.closing}</h2>

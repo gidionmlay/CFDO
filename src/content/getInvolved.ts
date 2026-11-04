@@ -24,5 +24,5 @@ export const getInvolvedContent = {
     },
   ],
   organization: 'Community for Future Development Organization (CFDO)',
-  location: 'Mwanza, Tanzania',
+  location: 'Mafao House 7th floor, Arusha Tanzania',
 } as const
